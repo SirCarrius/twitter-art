@@ -82,7 +82,7 @@ classifier = nltk.NaiveBayesClassifier.train(training_set)
 #print classifier.show_most_informative_features(32)
 
 #tweet = ['I am not good at this', 'I hate my life', 'I feel good', 'My life is cold', 'Life is dark']
-with open("negativetweets.txt", "r") as ins:
+with open("neutral.txt", "r") as ins:
     tweet = []
     for line in ins:
         tweet.append(line)
@@ -124,7 +124,7 @@ else:
    
   for i in range(img.size[0]):    # for every pixel:
     for j in range(img.size[1]):
-       pixels[i,j] = (i, j, countPos+countNeg)
+       pixels[i,j] = (i, j, countPos*2+countNeg)
   print 'third case' 
         # set the colour accordingly
     #img.show()
