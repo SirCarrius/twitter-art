@@ -13,7 +13,7 @@ var twitterSearchClient = new Twitter.SearchClient(
 
 router.get('/', function(req, res) {
   twitterSearchClient.search({
-    'q': 'good',
+    'q': 'laptop',
     //'geocode': '40.342815,74.657893,100km',
     'result_type': 'recent',
     'count': 100,

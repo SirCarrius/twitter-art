@@ -82,7 +82,7 @@ classifier = nltk.NaiveBayesClassifier.train(training_set)
 #print classifier.show_most_informative_features(32)
 
 #tweet = ['I am not good at this', 'I hate my life', 'I feel good', 'My life is cold', 'Life is dark']
-with open("positivetweets.txt", "r") as ins:
+with open("negativetweets.txt", "r") as ins:
     tweet = []
     for line in ins:
         tweet.append(line)
@@ -99,28 +99,33 @@ print countPos
 print countNeg
 img = Image.new( 'RGB', (255,255), "black") # create a new black image
 pixels = img.load() # create the pixel map
-if countPos > countNeg:
+if countPos > 1.8 * countNeg:
   for i in range(img.size[0]):    # for every pixel:
     for j in range(img.size[1]):
-        pixels[i,j] = (countPos*i, countNeg*j, countPos+countNeg) # set the colour accordingly
+        pixels[i,j] = (i, j, countPos-countNeg) # set the colour accordingly
+  print 'first case'
+    #img.show()
+
    
     #img.show()
-elif countPos == countNeg:
+elif countNeg > 1.8 * countPos:
   #img = Image.new( 'RGB', (255,255), "black") # create a new black image
   #pixels = img.load() # create the pixel map
    
   for i in range(img.size[0]):    # for every pixel:
     for j in range(img.size[1]):
-        pixels[i,j] = (countPos*i, countNeg*j, 2*countPos) # set the colour accordingly
-   
-    #img.show()
+         pixels[i,j] = (i, j, countNeg*5-countPos)
+          # set the colour accordingly
+  print 'second case'
+  
 else:
   #img = Image.new( 'RGB', (255,255), "black") # create a new black image
   #pixels = img.load() # create the pixel map
    
   for i in range(img.size[0]):    # for every pixel:
     for j in range(img.size[1]):
-        pixels[i,j] = (countPos*i, countNeg*j, 5*countNeg-countNeg) # set the colour accordingly
-   
+       pixels[i,j] = (i, j, countPos+countNeg)
+  print 'third case' 
+        # set the colour accordingly
     #img.show()
 img.show()
