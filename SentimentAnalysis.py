@@ -82,7 +82,7 @@ classifier = nltk.NaiveBayesClassifier.train(training_set)
 #print classifier.show_most_informative_features(32)
 
 #tweet = ['I am not good at this', 'I hate my life', 'I feel good', 'My life is cold', 'Life is dark']
-with open("neutral.txt", "r") as ins:
+with open("negativetweets.txt", "r") as ins:
     tweet = []
     for line in ins:
         tweet.append(line)
@@ -91,10 +91,10 @@ countNeg = 0
 for x in range (0, len(tweet)):
   if (classifier.classify(extract_features(tweet[x].split()))) == 'positive':
     countPos+=1
-    print 'red world'
+    #print 'red world'
   else:
     countNeg+=1
-    print 'blue word'
+    #print 'blue word'
 print countPos
 print countNeg
 img = Image.new( 'RGB', (255,255), "black") # create a new black image
